@@ -24,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 public slots:
-    void slotDrawClean(void);
+    void slotDrawReset(void);
 
 private slots:
     void slotDrawAnim(void);
@@ -46,3 +46,28 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
+/*
+ *       Start menu
+ * |-----------------------|
+ * |--==Player===---Ok-----|
+ * |-----------------------|
+ * |---Player vs CPU ------|
+ * |---Player vs Player ---|
+ * |-----------------------|
+ *
+ *
+ *      Some gameplay
+ * |-----------------------|
+ * |ooooooooooooooooooooooo|
+ * |ooooooooooooooooooooooo|
+ * |oo|--|ooo/***\ooo|--|oo|
+ * |oo|  |oo|<-- |ooo|  |oo|
+ * |oo|  |oo\**o/oooo|  |oo|
+ * |oo|  |ooooooooooo|  |oo|
+ * |oo|--|ooooooooooo|--|oo|
+ * |ooooooooooooooooooooooo|
+ * |ooooooooooooooooooooooo|
+ * |_______________________|
+ *
+*/

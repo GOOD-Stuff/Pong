@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     timer = new QTimer();
 
-    connect(btnOk, SIGNAL(clicked(bool)), this, SLOT(slotDrawClean()));
+    connect(btnOk, SIGNAL(clicked(bool)), this, SLOT(slotDrawReset()));
     connect(btnExt, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(timer, SIGNAL(timeout()), this, SLOT(slotDrawAnim()));
 
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     widgMain->setLayout(grdLayout);
 
-    this->setWindowTitle("Pong v0.1");
+    this->setWindowTitle("Pong v0.5");
     this->setMinimumHeight(30);
     this->setMinimumWidth(100);
     this->setCentralWidget(widgMain);
@@ -32,36 +32,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     y_step = grphView->width() / 2;
     x_direction = false;
     y_direction = false;
-    timer->start(10);
+    timer->start(1);
     //ui->setupUi(this);
 }
 
-void MainWindow::slotDrawClean(){
-    grphScene->addEllipse(30, 100, 30, 30);
-    grphView->setScene(grphScene);
-}
-
-void MainWindow::slotDrawAnim(){
+void MainWindow::slotDrawReset(){
     grphScene->clear();
     grphView->setScene(grphScene);
 
+    x_step = grphView->height() / 2;
+    y_step = grphView->width() / 2;
+}
+
+void MainWindow::slotDrawAnim(){
+    /*
+    grphScene->clear();
+    grphView->setScene(grphScene);
+*/
     int const max_height = grphView->height();
     int const max_width = grphView->width();
     int const min_height = grphView->minimumHeight();
     int const min_width = grphView->minimumWidth();
 
-    qDebug() << "MAX: " << max_height;
-
-
     // TODO: need to reverse direction
-    if(( y_step >= max_height ) || ( y_step <= min_height )){
+    if(( y_step >= max_height ) || ( y_step <= min_height ))
         y_direction = !y_direction;
-        qDebug() << y_direction;
-    }
-    if(( x_step >= max_width ) || ( x_step <= min_width )){
+    if(( x_step >= max_width ) || ( x_step <= min_width ))
         x_direction = !x_direction;
-        qDebug() << x_direction;
-    }
 
     if( y_direction == false )
         y_step++;
@@ -73,9 +70,10 @@ void MainWindow::slotDrawAnim(){
     else if( x_direction == true )
         x_step--;
 
+    /*
     qDebug() << "X_step" << x_step;
     qDebug() << "Y_step" << y_step;
-
+*/
     grphScene->addEllipse(-x_step, y_step, 30, 30, QPen(Qt::black), QBrush(Qt::blue));
     grphView->setScene(grphScene);
 }
@@ -88,4 +86,5 @@ MainWindow::~MainWindow(){
     delete grphView;
     delete grdLayout;
     delete widgMain;
+    delete timer;
 }
