@@ -14,8 +14,13 @@ class Player {
 public:
     Player();
 
+    void set_plr_name(QString name);
+    QString get_plr_name(void);
+
     ~Player();
+
 private:
+    QString plr_name;
 
 };
 

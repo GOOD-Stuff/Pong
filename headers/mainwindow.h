@@ -5,12 +5,14 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
+#include <QLineEdit>
 #include <QGridLayout>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QDebug>
 #include <QTimer>
 #include <time.h>
+#include "player.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,18 +25,28 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-public slots:
-    void slotDrawReset(void);
 
+public slots:
+    void slotAcceptName(void);
+    void slotSingleGame(void);
+    void slotNetwrkGame(void);
+    void slotHelpWidgt(void);
+    void slotSettings(void);
+/*
 private slots:
     void slotDrawAnim(void);
-
+*/
 private:
     // fields
     Ui::MainWindow *ui;
     QWidget        *widgMain;
     QPushButton    *btnOk;
     QPushButton    *btnExt;
+    QPushButton    *btnMd1;
+    QPushButton    *btnMd2;
+    QPushButton    *btnHlp;
+    QPushButton    *btnSettng;
+    QLineEdit      *lne_name;
     QGridLayout    *grdLayout;
     QGraphicsView  *grphView;
     QGraphicsScene *grphScene;
