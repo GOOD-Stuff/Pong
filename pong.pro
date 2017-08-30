@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     player.cpp \
     network.cpp \
-    drawer.cpp
+    drawer.cpp \
+    gamefield.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
     network.h \
-    drawer.h
+    drawer.h \
+    gamefield.h
 
 FORMS    += mainwindow.ui

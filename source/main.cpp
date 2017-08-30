@@ -19,6 +19,7 @@ Major:
  3 - Add drawer class: responsible of drawing players and ball;
  4 - Add interaction between ball and player;
  5 - Add control of player;
+ 6 - Add game class: responsible of drawing game space;
 Minor:
  6 - Add some rule;
  7 - Add scoreboard;
