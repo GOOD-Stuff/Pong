@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     widgMain = new QWidget(this);
+    game     = new GameField();
 
     btnOk  = new QPushButton("Ok", this);
     btnExt = new QPushButton("Exit", this);
@@ -50,6 +51,9 @@ void MainWindow::slotAcceptName(){
 
 void MainWindow::slotSingleGame(){
     qDebug() << "stub";
+    game->show();
+    this->hide();
+
 }
 
 void MainWindow::slotNetwrkGame(){
@@ -74,6 +78,7 @@ MainWindow::~MainWindow(){
     delete btnSettng;
     //delete grphScene;
 //    delete grphView;
+    delete game;
     delete grdLayout;
     delete widgMain;
     delete timer;

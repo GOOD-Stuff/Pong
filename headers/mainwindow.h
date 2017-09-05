@@ -13,6 +13,7 @@
 #include <QTimer>
 #include <time.h>
 #include "player.h"
+#include "gamefield.h"
 
 namespace Ui {
 class MainWindow;
@@ -50,6 +51,7 @@ private:
     QGridLayout    *grdLayout;
     QGraphicsView  *grphView;
     QGraphicsScene *grphScene;
+    GameField      *game;
     QTimer         *timer;
     int32_t         x_step;
     int32_t         y_step;

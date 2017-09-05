@@ -5,13 +5,16 @@
 #include <QGridLayout>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QPushButton>
 #include <QDebug>
 #include <QTimer>
+#include "player.h"
 
 class GameField : public QWidget {
     Q_OBJECT
 public:
     explicit GameField(QWidget *parent = 0);
+    void GamePlay();
     ~GameField();
 signals:
 
@@ -21,6 +24,9 @@ private:
     QGridLayout    *grdGameLayout;
     QGraphicsView  *grphGameView;
     QGraphicsScene *grphGameScene;
+    QPushButton    *btnExit;
+    QPushButton    *btnStart;
+    QPushButton    *btnReset;
     QTimer         *gameTimer;
 };
 
