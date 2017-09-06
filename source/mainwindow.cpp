@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
    // grphView = new QGraphicsView(widgMain);
     //grphScene = new QGraphicsScene(grphView);
 
-    timer = new QTimer();
 
     connect(btnOk,  SIGNAL(clicked(bool)), this, SLOT(slotAcceptName()));
     connect(btnExt, SIGNAL(clicked(bool)), this, SLOT(close()));
@@ -52,7 +51,7 @@ void MainWindow::slotAcceptName(){
 void MainWindow::slotSingleGame(){
     qDebug() << "stub";
     game->show();
-    this->hide();
+    this->setHidden(true);//hide();
 
 }
 
@@ -81,5 +80,4 @@ MainWindow::~MainWindow(){
     delete game;
     delete grdLayout;
     delete widgMain;
-    delete timer;
 }

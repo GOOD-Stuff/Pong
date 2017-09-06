@@ -52,11 +52,6 @@ private:
     QGraphicsView  *grphView;
     QGraphicsScene *grphScene;
     GameField      *game;
-    QTimer         *timer;
-    int32_t         x_step;
-    int32_t         y_step;
-    bool            x_direction;
-    bool            y_direction;
 };
 
 #endif // MAINWINDOW_H

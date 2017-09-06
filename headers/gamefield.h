@@ -20,13 +20,25 @@ signals:
 
 public slots:
 
+private slots:
+    void slotResetField();
+    void slotExitField();
+    void slotGameStart();
+    void slotGameStop();
+    void slotTimerCount();
+
 private:
+    int y_step;
+    int x_step;
+    bool y_direction;
+    bool x_direction;
     QGridLayout    *grdGameLayout;
     QGraphicsView  *grphGameView;
     QGraphicsScene *grphGameScene;
     QPushButton    *btnExit;
     QPushButton    *btnStart;
-    QPushButton    *btnReset;
+    QPushButton    *btnStop;
+    QPushButton    *btnReset;    
     QTimer         *gameTimer;
 };
 
