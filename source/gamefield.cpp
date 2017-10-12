@@ -3,13 +3,15 @@
 GameField::GameField(QWidget *parent) : QWidget(parent) {
 
     grdGameLayout = new QGridLayout(this);
-    grphGameView = new QGraphicsView(this);
+    grphGameView  = new QGraphicsView(this);
     grphGameScene = new QGraphicsScene(grphGameView);
 
-    btnStart = new QPushButton("Start", this);
-    btnStop  = new QPushButton("Stop", this);
-    btnExit  = new QPushButton("Exit", this);
-    btnReset = new QPushButton("Reset", this);
+    droo = new Drawer(grphGameView);
+
+    btnStart  = new QPushButton("Start", this);
+    btnStop   = new QPushButton("Stop", this);
+    btnExit   = new QPushButton("Exit", this);
+    btnReset  = new QPushButton("Reset", this);
 
     gameTimer = new QTimer();
 
@@ -35,11 +37,27 @@ GameField::GameField(QWidget *parent) : QWidget(parent) {
     y_direction = false;
 }
 
+/**
+ * @brief GameField::GamePlay
+ */
 void GameField::GamePlay(){
+    slotResetField();  // TODO: change to private func which call signal
+    CalculatePos();
+
+    grphGameScene->addItem(droo->DrawBall(-x_step, y_step));
+    grphGameScene->addItem(droo->DrawPlayer(x_step, y_step));
+    grphGameScene->addItem(droo->DrawPlayer(x_step, -y_step));
+    grphGameView->setScene(grphGameScene);
+}
+
+/**
+ * @brief GameField::CalculatePos
+ */
+void GameField::CalculatePos(){
     int const max_height = grphGameView->height();
-    int const max_width = grphGameView->width();
+    int const max_width  = grphGameView->width();
     int const min_height = grphGameView->minimumHeight();
-    int const min_width = grphGameView->minimumWidth();
+    int const min_width  = grphGameView->minimumWidth();
 
     if(( y_step >= max_height ) || ( y_step <= min_height ))
         y_direction = !y_direction;
@@ -56,18 +74,23 @@ void GameField::GamePlay(){
     else if( x_direction == true )
         x_step--;
 
-        /*
-        qDebug() << "X_step" << x_step;
-        qDebug() << "Y_step" << y_step;
-    */
-    grphGameScene->addEllipse(-x_step, y_step, 30, 30, QPen(Qt::black), QBrush(Qt::blue));
-    grphGameView->setScene(grphGameScene);
+/*
+    qDebug() << "max heir" << max_height;
+    qDebug() << "X_step" << x_step;
+    qDebug() << "Y_step" << y_step;
+*/
 }
 
+/**
+ * @brief GameField::slotTimerCount
+ */
 void GameField::slotTimerCount(){
     GamePlay();
 }
 
+/**
+ * @brief GameField::slotGameStop
+ */
 void GameField::slotGameStop(){
     btnStart->setVisible(true);
     btnStop->setHidden(true);
@@ -75,23 +98,39 @@ void GameField::slotGameStop(){
 
 }
 
+/**
+ * @brief GameField::slotGameStart
+ */
 void GameField::slotGameStart(){
     btnStart->setHidden(true);
     btnStop->setVisible(true);
     gameTimer->start(1);
 }
 
+/**
+ * @brief GameField::slotResetField
+ */
 void GameField::slotResetField(){
     grphGameScene->clear();
     grphGameView->setScene(grphGameScene);
 }
 
+/**
+ * @brief GameField::slotExitField
+ */
 void GameField::slotExitField(){
-    this->close();
+    this->setHidden(true);
+    this->parentWidget()->setVisible(true);
 }
 
 GameField::~GameField(){
+    delete droo;
     delete grdGameLayout;
     delete grphGameView;
     delete grphGameScene;
+    delete gameTimer;
+    delete btnExit;
+    delete btnStart;
+    delete btnStop;
+    delete btnReset;
 }

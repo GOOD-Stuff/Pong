@@ -21,7 +21,8 @@ Major:
  5 - Add control of player;
  6 - Add game class: responsible of drawing game space;
 Minor:
- 6 - Add some rule;
- 7 - Add scoreboard;
- 8 - Add setup of network connection;
+ 7 - Add some rule;
+ 8 - Add scoreboard;
+ 9 - Add setup of network connection;
+10 - Add setting class: responsible of drawing setting's menu and control logic;
 */

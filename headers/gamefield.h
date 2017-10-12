@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QTimer>
 #include "player.h"
+#include "drawer.h"
 
 class GameField : public QWidget {
     Q_OBJECT
@@ -28,10 +29,11 @@ private slots:
     void slotTimerCount();
 
 private:
-    int y_step;
-    int x_step;
-    bool y_direction;
-    bool x_direction;
+    int            y_step;
+    int            x_step;
+    bool           y_direction;
+    bool           x_direction;
+    Drawer         *droo;
     QGridLayout    *grdGameLayout;
     QGraphicsView  *grphGameView;
     QGraphicsScene *grphGameScene;
@@ -40,6 +42,7 @@ private:
     QPushButton    *btnStop;
     QPushButton    *btnReset;    
     QTimer         *gameTimer;
+    void           CalculatePos();
 };
 
 #endif // GAMEFIELD_H
