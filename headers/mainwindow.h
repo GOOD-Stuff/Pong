@@ -14,6 +14,7 @@
 #include <time.h>
 #include "player.h"
 #include "gamefield.h"
+#include "settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,11 +29,12 @@ public:
     ~MainWindow();
 
 public slots:
-    void slotAcceptName(void);
     void slotSingleGame(void);
     void slotNetwrkGame(void);
     void slotHelpWidgt(void);
     void slotSettings(void);
+signals:
+    void set_player_name(QString name);
 /*
 private slots:
     void slotDrawAnim(void);
@@ -41,17 +43,14 @@ private:
     // fields
     Ui::MainWindow *ui;
     QWidget        *widgMain;
-    QPushButton    *btnOk;
     QPushButton    *btnExt;
     QPushButton    *btnMd1;
     QPushButton    *btnMd2;
     QPushButton    *btnHlp;
     QPushButton    *btnSettng;
-    QLineEdit      *lne_name;
     QGridLayout    *grdLayout;
-    QGraphicsView  *grphView;
-    QGraphicsScene *grphScene;
     GameField      *game;
+    Settings       *settings;
 };
 
 #endif // MAINWINDOW_H
@@ -72,7 +71,7 @@ private:
  * |ooooooooooooooooooooooo|
  * |oo|--|ooo/***\ooo|--|oo|
  * |oo|  |oo|<-- |ooo|  |oo|
- * |oo|  |oo\**o/oooo|  |oo|
+ * |oo|  |oo\****|ooo|  |oo|
  * |oo|  |ooooooooooo|  |oo|
  * |oo|--|ooooooooooo|--|oo|
  * |ooooooooooooooooooooooo|

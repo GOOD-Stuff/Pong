@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QTimer>
+#include <QMainWindow>
 #include "player.h"
 #include "drawer.h"
 
@@ -18,10 +19,12 @@ public:
     void GamePlay();
     ~GameField();
 signals:
+    void Refresh();
 
 public slots:
 
 private slots:
+    void slotRefreshField();
     void slotResetField();
     void slotExitField();
     void slotGameStart();
@@ -29,11 +32,17 @@ private slots:
     void slotTimerCount();
 
 private:
-    int            y_step;
-    int            x_step;
-    bool           y_direction;
+    int            x_ball_step;
+    int            y_ball_step;
+    int            x_plyr_step;
+    int            y_plyr_step;
     bool           x_direction;
+    bool           y_direction;
+
+    int            x_pos;
+    int            y_pos;
     Drawer         *droo;
+    Player         *plyr;
     QGridLayout    *grdGameLayout;
     QGraphicsView  *grphGameView;
     QGraphicsScene *grphGameScene;
@@ -43,6 +52,10 @@ private:
     QPushButton    *btnReset;    
     QTimer         *gameTimer;
     void           CalculatePos();
+
+protected:
+    virtual void keyPressEvent(QKeyEvent *event);
+
 };
 
 #endif // GAMEFIELD_H
